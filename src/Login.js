@@ -1,14 +1,37 @@
 import { useState } from "react";
+import { useSnackbar } from "notistack";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
   const history = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
+  const post = [
+    {
+      id: "fc0e5483-6d30-4201-a661-0ec209529fb2",
+      UserId: "ravi",
+      msg: "I saw a beautiful sunrise in the early morning.",
+      liked: ["raju"],
+      count: 1,
+    },
+    {
+      id: "a351da39-9fb7-4136-b468-86292990c8ab",
+      UserId: "raju",
+      msg: "Rajini looks fabulous in jaller movie.",
+      liked: [],
+      count: 0,
+    },
+    {
+      id: "a351dg39-9fb7-4136-b968-86292990c8ab",
+      UserId: "raju",
+      msg: "Vande Bharat Trains inaugurated by our Prime Minister.",
+      liked: [],
+      count: 0,
+    },
+  ];
   const [x, setX] = useState({
     userName: "",
     email: "",
-    isErr2: false,
-    isErr1: false,
   });
 
   const name = (event) => {
@@ -21,17 +44,15 @@ const Login = () => {
 
   const nameBlur = (event) => {
     if (event.target.value.length < 4) {
-      setX({ ...x, isErr2: true });
-    } else {
-      setX({ ...x, isErr2: false });
+      enqueueSnackbar("UserName must be minimum 4 Characters", {
+        variant: "error",
+      });
     }
   };
 
   const mailBlur = (event) => {
-    if (x.email.includes("@gmail.com")) {
-      setX({ ...x, isErr1: false });
-    } else {
-      setX({ ...x, isErr1: true });
+    if (!x.email.includes("@gmail.com")) {
+      enqueueSnackbar("Email must be Valid Format", { variant: "error" });
     }
   };
 
@@ -40,24 +61,18 @@ const Login = () => {
       localStorage.setItem("currentUser", x.userName);
       console.log("Running");
       if (localStorage.getItem("posts") === null) {
-        localStorage.setItem("posts", JSON.stringify([]));
+        localStorage.setItem("posts", JSON.stringify(post));
       }
+      enqueueSnackbar("Successfully LogIn", { variant: "success" });
 
       history("/", { replace: true });
     } else {
-      if (x.userName.length < 4 && !x.email.includes("@gmail.com")) {
-        const obj = { ...x };
-        obj.isErr2 = true;
-        obj.isErr1 = true;
-        setX(obj);
-      } else if (x.userName.length < 4) {
-        console.log({ before: x }, "<4");
-        const obj = { ...x };
-        obj.isErr2 = true;
-        setX(obj);
-        console.log({ after: x });
-      } else {
-        setX({ ...x, isErr1: true });
+      if (x.userName.length < 4) {
+        enqueueSnackbar("UserName must be minimum 4 Characters", {
+          variant: "error",
+        });
+      } else if (!x.email.includes("@gmail.com")) {
+        enqueueSnackbar("Email must be Valid Format", { variant: "error" });
       }
     }
     console.log(localStorage.getItem("currentUser"));
@@ -66,6 +81,7 @@ const Login = () => {
 
   return (
     <div className="inputCon">
+      <h1>PostShare</h1>
       <form>
         <input
           type="text"
@@ -76,7 +92,6 @@ const Login = () => {
         />
 
         {console.log({ 2: x.isErr2 })}
-        {x.isErr2 && <p className="err">*UserName required Min 4 Characters</p>}
 
         <input
           type="email"
@@ -85,8 +100,6 @@ const Login = () => {
           onChange={ph}
           onBlur={mailBlur}
         />
-
-        {x.isErr1 && <p className="err">*Mail_Id Incorrect</p>}
 
         <button id="loginBtn" button type="button" onClick={f}>
           Login

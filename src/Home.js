@@ -1,5 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 
+import { useSnackbar } from "notistack";
+
 import { useState } from "react";
 
 import { v4 } from "uuid";
@@ -9,31 +11,13 @@ import Post from "./Post";
 import "./Home.css";
 
 function Home() {
-  const post = [
-    {
-      id: "fc0e5483-6d30-4201-a661-0ec209529fb2",
-      UserId: "ravi",
-      msg: "hi Frnd",
-      liked: ["raju"],
-      count: 1,
-    },
-    {
-      id: "a351da39-9fb7-4136-b468-86292990c8ab",
-      UserId: "raju",
-      msg: "Happy Independence Day...",
-      liked: [],
-      count: 0,
-    },
-  ];
-
-  localStorage.setItem("posts", JSON.stringify(post));
-
+  const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
   const r = localStorage.getItem("currentUser");
-  if (r === null) {
-    navigate("/login", { replace: true });
-    console.log({ r });
-  }
+  // if (r === "null" || r === null) {
+  //   navigate("/login", { replace: true });
+  //   console.log({ r }, "initial");
+  // }
   const [data, setData] = useState(JSON.parse(localStorage.getItem("posts")));
 
   const [msg, setMsg] = useState("");
@@ -45,13 +29,19 @@ function Home() {
   };
 
   const createPost = () => {
-    const postList = JSON.parse(localStorage.getItem("posts"));
-    let postInfo = { id: v4(), UserId: r, msg, liked: [], count: 0 };
+    if (msg === "") {
+      enqueueSnackbar("Empty message Can't be Post", { variant: "error" });
+    } else {
+      const postList = JSON.parse(localStorage.getItem("posts"));
+      let postInfo = { id: v4(), UserId: r, msg, liked: [], count: 0 };
 
-    let dataRes = [...postList, postInfo];
-    setData(dataRes);
-    setMsg("");
-    localStorage.setItem("posts", JSON.stringify(dataRes));
+      let dataRes = [...postList, postInfo];
+      setData(dataRes);
+      setMsg("");
+
+      localStorage.setItem("posts", JSON.stringify(dataRes));
+      enqueueSnackbar("Successfully Posted...", { variant: "success" });
+    }
   };
 
   const like = (id) => {

@@ -1,4 +1,5 @@
 import { AiFillHeart, AiOutlineHeart, AiOutlineDelete } from "react-icons/ai";
+import { useSnackbar } from "notistack";
 import { FaEdit } from "react-icons/fa";
 
 import { useState } from "react";
@@ -6,6 +7,7 @@ import { useState } from "react";
 import "./UserPost.css";
 
 const UserPost = (props) => {
+  const { enqueueSnackbar } = useSnackbar();
   const { detail, likedPost, currentUser, del, data, setData } = props;
   let { UserId, msg, count, id, liked } = detail;
 
@@ -16,6 +18,7 @@ const UserPost = (props) => {
 
   const delBtn = () => {
     del(id);
+    enqueueSnackbar("Successfully Deleted...", { variant: "success" });
   };
 
   let mc = (event) => {
@@ -44,6 +47,7 @@ const UserPost = (props) => {
     setEdit(false);
     setData(n_d);
     localStorage.setItem("posts", JSON.stringify(n_d));
+    enqueueSnackbar("Successfully Edited...", { variant: "success" });
   };
   console.log({ newMsg });
 

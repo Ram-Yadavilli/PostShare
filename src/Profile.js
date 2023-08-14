@@ -1,12 +1,15 @@
 import { useState } from "react";
+
 import { Link } from "react-router-dom";
 import UserPost from "./UserPost";
 
 import "./Profile.css";
 
 const Profile = () => {
-  const [data, setData] = useState(JSON.parse(localStorage.getItem("posts")));
   const currentUser = localStorage.getItem("currentUser");
+  console.log({ currentUser }, currentUser === null);
+
+  const [data, setData] = useState(JSON.parse(localStorage.getItem("posts")));
 
   const userData = data.filter((i) => i.UserId === currentUser);
   const likedPost = (id) => {

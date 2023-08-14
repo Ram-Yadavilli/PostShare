@@ -12,13 +12,17 @@
   height: 30px;
   margin: 0px 10px;
   background-color: rgb(221, 39, 39);
+  border: none;
 
   cursor: pointer;
+  border-radius: 12px;
 }
 
 .createBtn {
   background-color: rgb(97, 97, 196);
   cursor: pointer;
+  border-radius: 12px;
+  border: none;
 }
 
 .main {
@@ -50,7 +54,8 @@
 }
 
 .i {
-  width: 40%;
+  width: 25%;
+  height: 40px;
 }
 
 ul {

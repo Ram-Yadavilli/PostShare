@@ -4,9 +4,11 @@
 
 .inputCon {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100vw;
+  width: 70vw;
+  margin: 0% 15vw;
   height: 100vh;
   padding: 20px;
 }
@@ -14,6 +16,7 @@
 form {
   height: 40%;
   width: 70%;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,6 +33,8 @@ input {
   width: 72%;
   background-color: rgb(56, 34, 253);
   margin-bottom: 10px;
+  border: none;
+  border-radius: 10px;
 }
 
 @media screen and (max-width: 400px) {

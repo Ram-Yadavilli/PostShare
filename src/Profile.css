@@ -1,6 +1,9 @@
 .name1 {
   display: flex;
 
+  justify-content: center;
+  align-items: center;
+
   height: 70%;
 }
 
@@ -16,4 +19,5 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 0px 20px;
+  text-align: center;
 }
