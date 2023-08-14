@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import UserPost from "./UserPost";
 
 import "./Profile.css";
@@ -54,7 +55,6 @@ const Profile = () => {
         {userData.map((i, index) => (
           <UserPost
             detail={i}
-            index={index}
             key={i.id}
             likedPost={likedPost}
             currentUser={currentUser}
@@ -71,9 +71,12 @@ const Profile = () => {
 
   return (
     <div>
-      <div className="nc1">
-        <p className="n">{currentUser[0].toUpperCase()}</p>
-        <h3>{currentUser.toUpperCase()}</h3>
+      <div className="profileHeader">
+        <div className="nc1">
+          <p className="n">{currentUser[0].toUpperCase()}</p>
+          <h3>{currentUser.toUpperCase()}</h3>
+        </div>
+        <Link to="/">Home</Link>
       </div>
 
       {res ? UserPostEmpty() : UserPostData()}

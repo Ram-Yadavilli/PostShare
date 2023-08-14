@@ -1,3 +1,92 @@
 .err {
   color: red;
 }
+
+.inputCon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  padding: 20px;
+}
+
+form {
+  height: 40%;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border: 2px solid black;
+}
+input {
+  width: 70%;
+  margin: 10px 0px;
+}
+#loginBtn {
+  margin-top: 10px;
+  width: 72%;
+  background-color: rgb(56, 34, 253);
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 400px) {
+  form {
+    height: 50%;
+    width: 80%;
+  }
+  .err {
+    font-size: 15px;
+  }
+  input {
+    width: 70%;
+    height: 14%;
+    margin: 10px 0px;
+  }
+}
+
+@media screen and (max-width: 600px) and (min-width: 400px) {
+  form {
+    height: 50%;
+    width: 80%;
+  }
+  .err {
+    font-size: 16px;
+  }
+  input {
+    width: 70%;
+    height: 14%;
+    margin: 10px 0px;
+  }
+  #loginBtn {
+    margin-top: 10px;
+    width: 72%;
+    height: 30px;
+    background-color: rgb(56, 34, 253);
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  form {
+    height: 60%;
+    width: 80%;
+  }
+  .err {
+    font-size: 20px;
+  }
+  input {
+    width: 70%;
+    height: 12%;
+    margin: 10px 0px;
+  }
+  #loginBtn {
+    margin-top: 10px;
+    width: 72%;
+    height: 35px;
+    background-color: rgb(56, 34, 253);
+    margin-bottom: 10px;
+  }
+}

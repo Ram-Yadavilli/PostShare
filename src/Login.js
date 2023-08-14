@@ -21,17 +21,17 @@ const Login = () => {
 
   const nameBlur = (event) => {
     if (event.target.value.length < 4) {
-      setX({ ...x, isErr2: !x.isErr2 });
+      setX({ ...x, isErr2: true });
     } else {
-      setX({ ...x, isErr2: !x.isErr2 });
+      setX({ ...x, isErr2: false });
     }
   };
 
   const mailBlur = (event) => {
-    if (x.email.includes("@gmail.com") === false) {
-      setX({ ...x, isErr1: !x.isErr1 });
+    if (x.email.includes("@gmail.com")) {
+      setX({ ...x, isErr1: false });
     } else {
-      setX({ ...x, isErr1: !x.isErr1 });
+      setX({ ...x, isErr1: true });
     }
   };
 
@@ -45,13 +45,18 @@ const Login = () => {
 
       history("/", { replace: true });
     } else {
-      if (x.userName === "") {
+      if (x.userName.length < 4 && !x.email.includes("@gmail.com")) {
         const obj = { ...x };
-        x.isErr2 = true;
+        obj.isErr2 = true;
+        obj.isErr1 = true;
         setX(obj);
-      }
-
-      if (!x.email.includes("@gmail.com")) {
+      } else if (x.userName.length < 4) {
+        console.log({ before: x }, "<4");
+        const obj = { ...x };
+        obj.isErr2 = true;
+        setX(obj);
+        console.log({ after: x });
+      } else {
         setX({ ...x, isErr1: true });
       }
     }
@@ -60,29 +65,30 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="inputCon">
       <form>
         <input
           type="text"
           placeholder="UserName"
+          value={x.userName}
           onChange={name}
           onBlur={nameBlur}
         />
-        <br />
 
+        {console.log({ 2: x.isErr2 })}
         {x.isErr2 && <p className="err">*UserName required Min 4 Characters</p>}
 
         <input
           type="email"
           placeholder="Email_Id"
+          value={x.email}
           onChange={ph}
           onBlur={mailBlur}
         />
-        <br />
 
         {x.isErr1 && <p className="err">*Mail_Id Incorrect</p>}
 
-        <button type="button" onClick={f}>
+        <button id="loginBtn" button type="button" onClick={f}>
           Login
         </button>
       </form>

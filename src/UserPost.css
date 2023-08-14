@@ -9,6 +9,7 @@ li {
   margin: 10px auto;
   height: 150px;
   flex-wrap: wrap;
+  border-radius: 5px;
 }
 
 .user_like_Con {
@@ -23,6 +24,19 @@ li {
   flex-direction: row;
   justify-content: flex-start;
   height: 25%;
+}
+
+.postBottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.iconCon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 10%;
 }
 
 .userName {

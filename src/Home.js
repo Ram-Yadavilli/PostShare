@@ -9,6 +9,25 @@ import Post from "./Post";
 import "./Home.css";
 
 function Home() {
+  const post = [
+    {
+      id: "fc0e5483-6d30-4201-a661-0ec209529fb2",
+      UserId: "ravi",
+      msg: "hi Frnd",
+      liked: ["raju"],
+      count: 1,
+    },
+    {
+      id: "a351da39-9fb7-4136-b468-86292990c8ab",
+      UserId: "raju",
+      msg: "Happy Independence Day...",
+      liked: [],
+      count: 0,
+    },
+  ];
+
+  localStorage.setItem("posts", JSON.stringify(post));
+
   const navigate = useNavigate();
   const r = localStorage.getItem("currentUser");
   if (r === null) {
@@ -18,6 +37,7 @@ function Home() {
   const [data, setData] = useState(JSON.parse(localStorage.getItem("posts")));
 
   const [msg, setMsg] = useState("");
+  const [searchPost, setSearchPost] = useState("");
 
   console.log({ r });
   const postData = (event) => {
@@ -63,33 +83,51 @@ function Home() {
     navigate("/login", { replace: true });
   };
 
+  const search = (event) => {
+    setSearchPost(event.target.value);
+  };
+
+  const searchResult = data.filter((i) =>
+    i.UserId.toUpperCase().includes(searchPost.toUpperCase())
+  );
   return (
     <div className="main">
       <div className="header">
-        <Link to="/">Home</Link>
-        <input className="i" type="search" placeholder="Search..." />
-        <Link to="/profile">Profile</Link>
-        <button onClick={logout}>Logout</button>
+        <input
+          className="i"
+          onChange={search}
+          type="search"
+          placeholder="Search..."
+          width="100%"
+        />
+
+        <div className="profileCon">
+          <Link to="/profile">Profile</Link>
+          <button className="logoutBtn" onClick={logout}>
+            Logout
+          </button>
+        </div>
       </div>
       <center>
         <div className="postContainer">
           <center>
             <h2>Publish Your Post Here....</h2>
             <textarea
+              className="textarea"
               rows="4"
-              cols="50"
-              value={data.msg}
+              cols="20"
+              value={msg}
               onChange={postData}
             ></textarea>
             <br />
-            <button type="button" onClick={createPost}>
+            <button type="button" className="createBtn" onClick={createPost}>
               +Create Post
             </button>
           </center>
         </div>
       </center>
       <ul>
-        {data.map((i) => (
+        {searchResult.map((i) => (
           <Post detail={i} key={i.id} like={like} r={r} />
         ))}
       </ul>

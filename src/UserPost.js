@@ -6,12 +6,13 @@ import { useState } from "react";
 import "./UserPost.css";
 
 const UserPost = (props) => {
-  const { detail, likedPost, currentUser, del, data, index, setData } = props;
+  const { detail, likedPost, currentUser, del, data, setData } = props;
   let { UserId, msg, count, id, liked } = detail;
 
   let [edit, setEdit] = useState(false);
   let [newMsg, setNewMsg] = useState("");
   let col1 = "";
+  let index = data.indexOf(detail);
 
   const delBtn = () => {
     del(id);
@@ -38,9 +39,6 @@ const UserPost = (props) => {
   };
 
   const ok = () => {
-    // let re = data.filter((i) => i.id === id);
-    // re[0].msg = newMsg;
-
     let n_d = [...data];
     n_d[index].msg = newMsg;
     setEdit(false);
@@ -66,23 +64,38 @@ const UserPost = (props) => {
           <p>{msg}</p>
         )}
       </center>
+      <div className="postBottom">
+        <div className="user_like_Con">
+          {col1 ? (
+            <AiFillHeart
+              onClick={likeBtn}
+              style={{
+                marginTop: "20px",
+                marginRight: "10px",
+                color: "red",
+                cursor: "pointer",
+              }}
+            />
+          ) : (
+            <AiOutlineHeart
+              onClick={likeBtn}
+              style={{
+                marginTop: "20px",
+                marginRight: "10px",
+                cursor: "pointer",
+              }}
+            />
+          )}
 
-      <div className="user_like_Con">
-        {col1 ? (
-          <AiFillHeart
-            onClick={likeBtn}
-            style={{ marginTop: "20px", marginRight: "10px", color: "red" }}
+          <p>Likes:{c}</p>
+        </div>
+        <div className="iconCon">
+          <AiOutlineDelete
+            onClick={delBtn}
+            style={{ color: "red", cursor: "pointer" }}
           />
-        ) : (
-          <AiOutlineHeart
-            onClick={likeBtn}
-            style={{ marginTop: "20px", marginRight: "10px" }}
-          />
-        )}
-
-        <p>Likes:{c}</p>
-        <AiOutlineDelete onClick={delBtn} />
-        <FaEdit onClick={editBtn} />
+          <FaEdit onClick={editBtn} style={{ cursor: "pointer" }} />
+        </div>
       </div>
     </li>
   );

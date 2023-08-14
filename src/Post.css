@@ -1,3 +1,6 @@
+body {
+  width: 100vw;
+}
 .n {
   width: 20px;
   height: 20px;
@@ -11,15 +14,16 @@
 
 li {
   list-style: none;
-  width: 40%;
+  width: 100vw;
   background-color: aquamarine;
   padding: 5px;
   margin: 5px;
-  height: 150px;
+
   padding-left: 10px;
-  margin: 10px auto;
+
   height: 150px;
   flex-wrap: wrap;
+  border-radius: 5px;
 }
 
 .like_Con {
@@ -34,4 +38,48 @@ li {
   flex-direction: row;
   justify-content: flex-start;
   height: 25%;
+}
+
+@media screen and (max-width: 400) {
+  li {
+    list-style: none;
+    width: 100%;
+    background-color: aquamarine;
+    padding: 5px;
+    margin: 5px;
+    height: 150px;
+    padding-left: 10px;
+    margin: 10px auto;
+    height: 150px;
+    flex-wrap: wrap;
+  }
+
+  .msg {
+    font-size: 25px;
+  }
+  .count {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 600) {
+  li {
+    list-style: none;
+    width: 100%;
+    background-color: aquamarine;
+    padding: 5px;
+    margin: 5px;
+    height: 150px;
+    padding-left: 10px;
+    margin: 10px auto;
+    height: 150px;
+    flex-wrap: wrap;
+  }
+
+  .msg {
+    font-size: 25px;
+  }
+  .count {
+    font-size: 25px;
+  }
 }

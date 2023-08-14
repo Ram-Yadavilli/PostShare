@@ -27,23 +27,32 @@ const Post = (props) => {
       </div>
 
       <center>
-        <p>{msg}</p>
+        <p className="msg">{msg}</p>
       </center>
 
       <div className="like_Con">
         {col ? (
           <AiFillHeart
             onClick={btn1}
-            style={{ marginTop: "20px", marginRight: "10px", color: "red" }}
+            style={{
+              marginTop: "20px",
+              marginRight: "10px",
+              color: "red",
+              cursor: "pointer",
+            }}
           />
         ) : (
           <AiOutlineHeart
             onClick={btn1}
-            style={{ marginTop: "20px", marginRight: "10px" }}
+            style={{
+              marginTop: "20px",
+              marginRight: "10px",
+              cursor: "pointer",
+            }}
           />
         )}
 
-        <p>Likes:{c}</p>
+        <p className="count">Likes:{c}</p>
       </div>
     </li>
   );
