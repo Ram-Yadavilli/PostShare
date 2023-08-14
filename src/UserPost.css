@@ -1,0 +1,37 @@
+li {
+  list-style: none;
+  width: 40%;
+  background-color: aquamarine;
+  padding: 5px;
+  margin: 5px;
+  height: 150px;
+  padding-left: 10px;
+  margin: 10px auto;
+  height: 150px;
+  flex-wrap: wrap;
+}
+
+.user_like_Con {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.userNameCon {
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: 25%;
+}
+
+.userName {
+  width: 20px;
+  height: 20px;
+  padding-left: 5px;
+  background-color: gray;
+  border-radius: 50%;
+  font-size: 15px;
+  margin-right: 15px;
+  margin-top: 20px;
+}

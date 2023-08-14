@@ -1,0 +1,30 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 3%;
+  width: 85%;
+}
+
+.main {
+  padding: 3%;
+  padding-left: 5%;
+  padding-right: 5%;
+  width: 100vw;
+}
+
+.postContainer {
+  border: 2px solid black;
+  width: 50vw;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+.i {
+  width: 25%;
+}
+
+ul {
+  width: 100%;
+  flex-direction: row;
+}
