@@ -42,12 +42,17 @@ const UserPost = (props) => {
   };
 
   const ok = () => {
-    let n_d = [...data];
-    n_d[index].msg = newMsg;
-    setEdit(false);
-    setData(n_d);
-    localStorage.setItem("posts", JSON.stringify(n_d));
-    enqueueSnackbar("Successfully Edited...", { variant: "success" });
+    if (newMsg.length > 0) {
+      console.log({ newMsg });
+      let n_d = [...data];
+      n_d[index].msg = newMsg;
+      setEdit(false);
+      setData(n_d);
+      localStorage.setItem("posts", JSON.stringify(n_d));
+      enqueueSnackbar("Successfully Edited...", { variant: "success" });
+    } else {
+      setEdit(false);
+    }
   };
   console.log({ newMsg });
 

@@ -65,7 +65,7 @@ const Login = () => {
       }
       enqueueSnackbar("Successfully LogIn", { variant: "success" });
 
-      history("/", { replace: true });
+      history("/home", { replace: true });
     } else {
       if (x.userName.length < 4) {
         enqueueSnackbar("UserName must be minimum 4 Characters", {

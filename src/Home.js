@@ -14,10 +14,7 @@ function Home() {
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
   const r = localStorage.getItem("currentUser");
-  // if (r === "null" || r === null) {
-  //   navigate("/login", { replace: true });
-  //   console.log({ r }, "initial");
-  // }
+
   const [data, setData] = useState(JSON.parse(localStorage.getItem("posts")));
 
   const [msg, setMsg] = useState("");
@@ -70,15 +67,18 @@ function Home() {
 
   const logout = () => {
     localStorage.setItem("currentUser", null);
-    navigate("/login", { replace: true });
+    navigate("/", { replace: true });
+    enqueueSnackbar("Successfully Logout...", { variant: "success" });
   };
 
   const search = (event) => {
     setSearchPost(event.target.value);
   };
 
-  const searchResult = data.filter((i) =>
-    i.UserId.toUpperCase().includes(searchPost.toUpperCase())
+  const searchResult = data.filter(
+    (i) =>
+      i.UserId.toUpperCase().includes(searchPost.toUpperCase()) ||
+      i.msg.toUpperCase().includes(searchPost.toUpperCase())
   );
   return (
     <div className="main">

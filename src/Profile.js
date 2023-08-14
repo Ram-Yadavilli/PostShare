@@ -39,9 +39,7 @@ const Profile = () => {
   const UserPostEmpty = () => {
     return (
       <div className="name1">
-        <center>
-          <h1>No Post Yet....</h1>
-        </center>
+        <h1>No Post Yet....</h1>
       </div>
     );
   };
@@ -79,7 +77,7 @@ const Profile = () => {
           <p className="n">{currentUser[0].toUpperCase()}</p>
           <h3>{currentUser.toUpperCase()}</h3>
         </div>
-        <Link to="/">Home</Link>
+        <Link to="/home">Home</Link>
       </div>
 
       {res ? UserPostEmpty() : UserPostData()}
