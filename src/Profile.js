@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { ImHome3 } from "react-icons/im";
+
 import { Link } from "react-router-dom";
 import UserPost from "./UserPost";
 
@@ -45,7 +47,7 @@ const Profile = () => {
   };
 
   const del = (id) => {
-    const r = userData.filter((i) => i.id !== id);
+    const r = data.filter((i) => i.id !== id);
     localStorage.setItem("posts", JSON.stringify(r));
     setData(r);
   };
@@ -77,7 +79,12 @@ const Profile = () => {
           <p className="n">{currentUser[0].toUpperCase()}</p>
           <h3>{currentUser.toUpperCase()}</h3>
         </div>
-        <Link to="/home">Home</Link>
+        <div className="home">
+          <Link to="/home">
+            <ImHome3 style={{ marginRight: "10px", cursor: "pointer" }} />
+          </Link>
+          <Link to="/home">Home</Link>
+        </div>
       </div>
 
       {res ? UserPostEmpty() : UserPostData()}

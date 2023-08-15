@@ -49,3 +49,19 @@ li {
   margin-right: 15px;
   margin-top: 20px;
 }
+
+@media screen and (max-width: 600px) {
+  li {
+    list-style: none;
+    width: 75%;
+    background-color: aquamarine;
+    padding: 5px;
+    margin: 5px;
+    height: 200px;
+    padding-left: 10px;
+    margin: 10px auto;
+    height: 150px;
+    flex-wrap: wrap;
+    border-radius: 5px;
+  }
+}

@@ -39,6 +39,12 @@ li {
   justify-content: flex-start;
   height: 25%;
 }
+.home {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 
 @media screen and (max-width: 400) {
   li {

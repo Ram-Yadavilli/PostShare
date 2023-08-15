@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
 
 import { useState } from "react";
+import { MdSearch } from "react-icons/md";
 
 import { v4 } from "uuid";
 
@@ -83,13 +84,16 @@ function Home() {
   return (
     <div className="main">
       <div className="header">
-        <input
-          className="i"
-          onChange={search}
-          type="search"
-          placeholder="Search..."
-          width="100%"
-        />
+        <div className="searchCon">
+          <input
+            className="i"
+            onChange={search}
+            type="search"
+            placeholder="Search..."
+            width="100%"
+          />
+          <MdSearch style={{ fontSize: "25px" }} />
+        </div>
 
         <div className="profileCon">
           <Link to="/profile">Profile</Link>

@@ -49,13 +49,23 @@
 .postContainer {
   border: 2px solid black;
   width: 100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px;
+}
+.searchCon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid grey;
+  width: 25vw;
+  height: 30px;
+  cursor: pointer;
 }
 
 .i {
-  width: 25%;
-  height: 40px;
+  width: 75%;
+  height: 30px;
+  border: none;
+  outline: none;
 }
 
 ul {

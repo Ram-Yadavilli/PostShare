@@ -12,7 +12,7 @@ const Login = () => {
       UserId: "ravi",
       msg: "I saw a beautiful sunrise in the early morning.",
       liked: ["raju"],
-      count: 1,
+      count: 5,
     },
     {
       id: "a351da39-9fb7-4136-b468-86292990c8ab",
@@ -26,7 +26,7 @@ const Login = () => {
       UserId: "raju",
       msg: "Vande Bharat Trains inaugurated by our Prime Minister.",
       liked: [],
-      count: 0,
+      count: 8,
     },
   ];
   const [x, setX] = useState({
