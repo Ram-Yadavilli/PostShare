@@ -17,8 +17,9 @@ const Profile = () => {
       navigate("/login", { replace: true });
     }
   }, []);
-
-  const [data, setData] = useState(JSON.parse(localStorage.getItem("posts")));
+  let collection =
+    currentUser === null ? [] : JSON.parse(localStorage.getItem("posts"));
+  const [data, setData] = useState(collection);
 
   const userData = data.filter((i) => i.UserId === currentUser);
   const likedPost = (id) => {
@@ -82,10 +83,12 @@ const Profile = () => {
   return (
     <div>
       <div className="profileHeader">
-        <div className="nc1">
-          <p className="n">{currentUser[0].toUpperCase()}</p>
-          <h3>{currentUser.toUpperCase()}</h3>
-        </div>
+        {currentUser !== null && (
+          <div className="nc1">
+            <p className="n">{currentUser[0].toUpperCase()}</p>
+            <h3>{currentUser.toUpperCase()}</h3>
+          </div>
+        )}
         <div className="home">
           <Link to="/">
             <ImHome3 style={{ marginRight: "10px", cursor: "pointer" }} />

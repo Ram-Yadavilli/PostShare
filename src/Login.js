@@ -7,7 +7,10 @@ const Login = () => {
   const history = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
   useEffect(() => {
-    if (localStorage.getItem("currentUser").length > 3) {
+    if (
+      localStorage.getItem("currentUser") !== null &&
+      localStorage.getItem("currentUser").length > 3
+    ) {
       console.log("<3");
       history("/", { replace: true });
     }

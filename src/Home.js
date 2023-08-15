@@ -15,18 +15,18 @@ function Home() {
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
   const r = localStorage.getItem("currentUser");
-  function navi() {
-    if (r === "n" || r === null) {
-      navigate("/login", { replace: true });
-    }
-  }
+  console.log({ r }, r === null);
 
-  const [data, setData] = useState(JSON.parse(localStorage.getItem("posts")));
+  let collection = r === null ? [] : JSON.parse(localStorage.getItem("posts"));
+  const [data, setData] = useState(collection);
+  console.log({ collection });
 
   const [msg, setMsg] = useState("");
   const [searchPost, setSearchPost] = useState("");
   useEffect(() => {
-    navi();
+    if (r === null || r === "n") {
+      navigate("/login", { replace: true });
+    }
   }, []);
   console.log({ r });
   const postData = (event) => {
@@ -52,6 +52,7 @@ function Home() {
   const like = (id) => {
     console.log("like", { id });
     let post_in = -1;
+    console.log({ data });
     let postLikedArr = data.filter((i, index) => {
       if (i.id === id) {
         post_in = index;
@@ -82,12 +83,16 @@ function Home() {
   const search = (event) => {
     setSearchPost(event.target.value);
   };
-  // navi();
-  const searchResult = data.filter(
-    (i) =>
-      i.UserId.toUpperCase().includes(searchPost.toUpperCase()) ||
-      i.msg.toUpperCase().includes(searchPost.toUpperCase())
-  );
+  console.log({ data });
+  const searchResult =
+    data.length === 0
+      ? []
+      : data.filter(
+          (i) =>
+            i.UserId.toUpperCase().includes(searchPost.toUpperCase()) ||
+            i.msg.toUpperCase().includes(searchPost.toUpperCase())
+        );
+
   return (
     <div className="main">
       <div className="header">
