@@ -9,8 +9,8 @@ import Login from "./Login";
 const App = () => {
   return (
     <Routes>
-      <Route path="/" Component={Login} />
-      <Route path="/home" Component={Home} />
+      <Route path="/login" Component={Login} />
+      <Route path="/" Component={Home} />
       <Route path="/profile" Component={Profile} />
     </Routes>
   );

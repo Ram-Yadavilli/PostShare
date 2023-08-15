@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { useSnackbar } from "notistack";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MdSearch } from "react-icons/md";
 
 import { v4 } from "uuid";
@@ -15,12 +15,19 @@ function Home() {
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
   const r = localStorage.getItem("currentUser");
+  function navi() {
+    if (r === "n" || r === null) {
+      navigate("/login", { replace: true });
+    }
+  }
 
   const [data, setData] = useState(JSON.parse(localStorage.getItem("posts")));
 
   const [msg, setMsg] = useState("");
   const [searchPost, setSearchPost] = useState("");
-
+  useEffect(() => {
+    navi();
+  }, []);
   console.log({ r });
   const postData = (event) => {
     setMsg(event.target.value);
@@ -67,15 +74,15 @@ function Home() {
   };
 
   const logout = () => {
-    localStorage.setItem("currentUser", null);
-    navigate("/", { replace: true });
+    localStorage.setItem("currentUser", "n");
+    navigate("/login", { replace: true });
     enqueueSnackbar("Successfully Logout...", { variant: "success" });
   };
 
   const search = (event) => {
     setSearchPost(event.target.value);
   };
-
+  // navi();
   const searchResult = data.filter(
     (i) =>
       i.UserId.toUpperCase().includes(searchPost.toUpperCase()) ||

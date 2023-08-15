@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSnackbar } from "notistack";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
@@ -6,6 +6,12 @@ import "./Login.css";
 const Login = () => {
   const history = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
+  useEffect(() => {
+    if (localStorage.getItem("currentUser").length > 3) {
+      console.log("<3");
+      history("/", { replace: true });
+    }
+  }, []);
   const post = [
     {
       id: "fc0e5483-6d30-4201-a661-0ec209529fb2",
@@ -65,7 +71,7 @@ const Login = () => {
       }
       enqueueSnackbar("Successfully LogIn", { variant: "success" });
 
-      history("/home", { replace: true });
+      history("/", { replace: true });
     } else {
       if (x.userName.length < 4) {
         enqueueSnackbar("UserName must be minimum 4 Characters", {

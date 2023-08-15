@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { ImHome3 } from "react-icons/im";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserPost from "./UserPost";
 
 import "./Profile.css";
@@ -10,6 +10,13 @@ import "./Profile.css";
 const Profile = () => {
   const currentUser = localStorage.getItem("currentUser");
   console.log({ currentUser }, currentUser === null);
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    if (currentUser === "n" || currentUser === null) {
+      navigate("/login", { replace: true });
+    }
+  }, []);
 
   const [data, setData] = useState(JSON.parse(localStorage.getItem("posts")));
 
@@ -80,10 +87,10 @@ const Profile = () => {
           <h3>{currentUser.toUpperCase()}</h3>
         </div>
         <div className="home">
-          <Link to="/home">
+          <Link to="/">
             <ImHome3 style={{ marginRight: "10px", cursor: "pointer" }} />
           </Link>
-          <Link to="/home">Home</Link>
+          <Link to="/">Home</Link>
         </div>
       </div>
 
